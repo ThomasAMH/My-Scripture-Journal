@@ -1,0 +1,49 @@
+﻿@page
+@model My_Scripture_Journal.Pages.Entries.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edi an Entry</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Entry.ID" />
+            <div class="form-group">
+                <label asp-for="Entry.Book" class="control-label"></label>
+                <input asp-for="Entry.Book" class="form-control" />
+                <span asp-validation-for="Entry.Book" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entry.Reference" class="control-label"></label>
+                <input asp-for="Entry.Reference" class="form-control" />
+                <span asp-validation-for="Entry.Reference" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entry.ImpressionNote" class="control-label"></label>
+                <input asp-for="Entry.ImpressionNote" class="form-control" />
+                <span asp-validation-for="Entry.ImpressionNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Entry.EntryDate" class="control-label"></label>
+                <input asp-for="Entry.EntryDate" class="form-control" />
+                <span asp-validation-for="Entry.EntryDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

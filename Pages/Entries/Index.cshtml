@@ -1,0 +1,70 @@
+﻿@page
+@model My_Scripture_Journal.Pages.Entries.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Journal - Home</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+
+<form>
+    <div>
+        <label for="book_search">Search by book:</label>
+        <select id="book_search" asp-for="EntryBook" asp-items="Model.Books">
+            <option value="">All</option>
+        </select>
+        <label for="note_search">Search by note keyword:</label>
+        <input id="note_search" type="text" asp-for="SearchString" />
+        <label for="date_select">Search by creation date:</label>
+        <input id="date_select" type="date" value="" asp-for="EntryCreateDate" />
+        <input type="submit" value="Filter" />
+
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry[0].Reference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry[0].Book)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry[0].ImpressionNote)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Entry[0].EntryDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Entry) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Reference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Book)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ImpressionNote)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryDate)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
